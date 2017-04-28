@@ -15,10 +15,9 @@ public class Tests {
 		final int min = 1, max = 100;
 		for(Integer i = min; i < max; i++) {
 			numbers.add(i.toString());
-		}
-		
-		NumberGenerator numberGenerator = new NumberGenerator();
-		ArrayList<String> numbersToTest = numberGenerator.generate(min, max);
+		}		
+
+		ArrayList<String> numbersToTest = NumberGenerator.generate(min, max);
 		
 		assertEquals(numbersToTest, numbers);
 	}
@@ -31,21 +30,46 @@ public class Tests {
 			if(isPrime(i)) numbers.add("prime");
 			else numbers.add(i.toString());
 		}
-		System.out.println(numbers);
-		
-		NumberGenerator numberGenerator = new NumberGenerator();
-		ArrayList<String> numbersToTest = numberGenerator.generate(min, max);
-		ArrayList<String> numbersWithPrimes = numberGenerator.findPrimes(numbersToTest);
+		System.out.println(numbers);		
+
+		ArrayList<String> numbersToTest = NumberGenerator.generate(min, max);
+		ArrayList<String> numbersWithPrimes = NumberGenerator.findPrimes(numbersToTest);
 		
 		assertEquals(numbers, numbersWithPrimes);
 	}
 	
+	@Test
+	public void printCompositeButNotEven() {
+		ArrayList<String> numbers = new ArrayList<String>();
+		final int min = 1, max = 100;
+		for(Integer i = min; i < max; i++) {
+			if(isPrime(i)) numbers.add("prime");
+			else if(isCompositeButNotEven(i)) numbers.add("composite");
+			else numbers.add(i.toString());
+		}
+		System.out.println(numbers);
+		
+		ArrayList<String> numbersToTest = NumberGenerator.generate(min, max);
+		ArrayList<String> numbersWithPrimes = NumberGenerator.findPrimes(numbersToTest);
+		ArrayList<String> numbersWithPrimesAndComposites = NumberGenerator.findComposites(numbersWithPrimes);
+		
+		assertEquals(numbers, numbersWithPrimesAndComposites);
+	}
+	
 	boolean isPrime(int n) {
+		if (n == 1) return false;
 	    for(int i=2;i<n;i++) {
 	        if(n%i==0)
 	            return false;
 	    }
 	    return true;
+	}
+	
+	boolean isCompositeButNotEven(int n) {
+		if( n == 1) return false;
+		if(isPrime(n)) return false;
+		else if(n%2 == 0) return false;
+		else return true;
 	}
 
 }

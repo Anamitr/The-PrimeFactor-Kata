@@ -43,18 +43,17 @@ public class Tests {
 		ArrayList<String> numbers = new ArrayList<String>();
 		final int min = 1, max = 100;
 		for(Integer i = min; i < max; i++) {
-			if(isPrime(i)) numbers.add("prime");
-			else if(isCompositeButNotEven(i)) numbers.add("composite");
+			if(isCompositeButNotEven(i)) numbers.add("composite");
 			else numbers.add(i.toString());
 		}
 		System.out.println(numbers);
 		
 		ArrayList<String> numbersToTest = NumberGenerator.generate(min, max);
-		ArrayList<String> numbersWithPrimes = NumberGenerator.findPrimes(numbersToTest);
-		ArrayList<String> numbersWithPrimesAndComposites = NumberGenerator.findComposites(numbersWithPrimes);
+		ArrayList<String> numbersWithComposites = NumberGenerator.findComposites(numbersToTest);
 		
-		assertEquals(numbers, numbersWithPrimesAndComposites);
+		assertEquals(numbers, numbersWithComposites);
 	}
+
 	
 	boolean isPrime(int n) {
 		if (n == 1) return false;

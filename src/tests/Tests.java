@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import main.NumberGenerator;
+import main.PrimeCompositeFinder;
 
 public class Tests {
 	
@@ -18,7 +18,7 @@ public class Tests {
 			numbers.add(i.toString());
 		}		
 
-		ArrayList<String> numbersToTest = NumberGenerator.generate(min, max);
+		ArrayList<String> numbersToTest = PrimeCompositeFinder.generate(min, max);
 		
 		assertEquals(numbersToTest, numbers);
 	}
@@ -33,8 +33,8 @@ public class Tests {
 		}
 		System.out.println(numbers);		
 
-		ArrayList<String> numbersToTest = NumberGenerator.generate(min, max);
-		ArrayList<String> numbersWithPrimes = NumberGenerator.findPrimes(numbersToTest);
+		ArrayList<String> numbersToTest = PrimeCompositeFinder.generate(min, max);
+		ArrayList<String> numbersWithPrimes = PrimeCompositeFinder.findPrimes(numbersToTest);
 		
 		assertEquals(numbers, numbersWithPrimes);
 	}
@@ -49,8 +49,8 @@ public class Tests {
 		}
 		System.out.println(numbers);
 		
-		ArrayList<String> numbersToTest = NumberGenerator.generate(min, max);
-		ArrayList<String> numbersWithComposites = NumberGenerator.findComposites(numbersToTest);
+		ArrayList<String> numbersToTest = PrimeCompositeFinder.generate(min, max);
+		ArrayList<String> numbersWithComposites = PrimeCompositeFinder.findComposites(numbersToTest);
 		
 		assertEquals(numbers, numbersWithComposites);
 	}
@@ -66,9 +66,9 @@ public class Tests {
 		}
 		System.out.println(numbers);
 		
-		ArrayList<String> numbersToTest = NumberGenerator.generate(min, max);
-		ArrayList<String> numbersWithComposites = NumberGenerator.findComposites(numbersToTest);
-		ArrayList<String> numbersWithPrimesAndComposites = NumberGenerator.findPrimes(numbersWithComposites);
+		ArrayList<String> numbersToTest = PrimeCompositeFinder.generate(min, max);
+		ArrayList<String> numbersWithComposites = PrimeCompositeFinder.findComposites(numbersToTest);
+		ArrayList<String> numbersWithPrimesAndComposites = PrimeCompositeFinder.findPrimes(numbersWithComposites);
 		
 		assertEquals(numbers, numbersWithPrimesAndComposites);
 	}
@@ -77,7 +77,7 @@ public class Tests {
 	@Test
 	public void acceptAnyRange() {
 		for(int min = 0; min < Integer.MAX_VALUE; min++) {
-			for(int max = min+1; max < Integer.MAX_VALUE; max++) NumberGenerator.generate(min, max);
+			for(int max = min+1; max < Integer.MAX_VALUE; max++) PrimeCompositeFinder.generate(min, max);
 		}
 	}
 	

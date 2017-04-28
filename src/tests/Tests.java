@@ -1,15 +1,13 @@
+package tests;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
 import org.junit.Test;
 
-public class Tests {
+import main.NumberGenerator;
 
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
+public class Tests {
 	
 	@Test
 	public void generateNumbersWithinRange() {
@@ -20,7 +18,7 @@ public class Tests {
 		}
 		
 		NumberGenerator numberGenerator = new NumberGenerator();
-		ArrayList<String> numbersToTest = new numberGenerator.generate(min, max);
+		ArrayList<String> numbersToTest = numberGenerator.generate(min, max);
 		
 		assertEquals(numbersToTest, numbers);
 	}

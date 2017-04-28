@@ -53,7 +53,24 @@ public class Tests {
 		
 		assertEquals(numbers, numbersWithComposites);
 	}
-
+	
+	@Test
+	public void printNumbersButPrimesAndComposites() {
+		ArrayList<String> numbers = new ArrayList<String>();
+		final int min = 1, max = 100;
+		for(Integer i = min; i < max; i++) {
+			if(isPrime(i)) numbers.add("prime");
+			else if(isCompositeButNotEven(i)) numbers.add("composite");
+			else numbers.add(i.toString());
+		}
+		System.out.println(numbers);
+		
+		ArrayList<String> numbersToTest = NumberGenerator.generate(min, max);
+		ArrayList<String> numbersWithComposites = NumberGenerator.findComposites(numbersToTest);
+		ArrayList<String> numbersWithPrimesAndComposites = NumberGenerator.findPrimes(numbersWithComposites);
+		
+		assertEquals(numbers, numbersWithPrimesAndComposites);
+	}
 	
 	boolean isPrime(int n) {
 		if (n == 1) return false;

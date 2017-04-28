@@ -3,6 +3,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import main.NumberGenerator;
@@ -70,6 +71,14 @@ public class Tests {
 		ArrayList<String> numbersWithPrimesAndComposites = NumberGenerator.findPrimes(numbersWithComposites);
 		
 		assertEquals(numbers, numbersWithPrimesAndComposites);
+	}
+	
+	@Ignore
+	@Test
+	public void acceptAnyRange() {
+		for(int min = 0; min < Integer.MAX_VALUE; min++) {
+			for(int max = min+1; max < Integer.MAX_VALUE; max++) NumberGenerator.generate(min, max);
+		}
 	}
 	
 	boolean isPrime(int n) {

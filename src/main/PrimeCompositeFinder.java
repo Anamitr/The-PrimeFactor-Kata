@@ -22,6 +22,17 @@ public class PrimeCompositeFinder {
 		return numbers;
 	}
 	
+	public static ArrayList<String> findNotEvenComposites(ArrayList<String> numbers) {
+		for (int i = 0; i < numbers.size(); i++) {
+			if (numbers.get(i).matches("^-?\\d+$")) {
+				Integer num = Integer.parseInt(numbers.get(i));
+				if (isCompositeButNotEven(num))
+					numbers.set(i, "composite");
+			}
+		}
+		return numbers;
+	}
+	
 	private static boolean isPrime(int n) {
 		if (n == 1)
 			return false;
@@ -30,5 +41,12 @@ public class PrimeCompositeFinder {
 				return false;
 		}
 		return true;
+	}
+	
+	private static boolean isCompositeButNotEven(int n) {
+		if( n == 1) return false;
+		if(isPrime(n)) return false;
+		else if(n%2 == 0) return false;
+		else return true;
 	}
 }

@@ -28,7 +28,7 @@ public class Tests {
 	public void shouldPrintPrimeInsteadOfNumber() {
 		ArrayList<String> wantedNumbers = new ArrayList<String>();
 		final int min = 1, max = 100;
-		for(Integer i = min; i < max; i++) {
+		for(Integer i = min; i <= max; i++) {
 			if(isPrime(i)) wantedNumbers.add("prime");
 			else wantedNumbers.add(i.toString());
 		}

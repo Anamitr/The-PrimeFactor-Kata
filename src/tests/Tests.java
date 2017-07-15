@@ -82,6 +82,27 @@ public class Tests {
 		assertEquals(wantedNumbers, numbersWithPrimesAndComposites);
 	}
 	
+	@Test
+	public void shouldPrintNumbersButPrimesAndCompositesReverseOrder() {
+		ArrayList<String> wantedNumbers = new ArrayList<String>();
+		final int min = 1, max = 100;
+		for (Integer i = min; i <= max; i++) {
+			if (isPrime(i))
+				wantedNumbers.add("prime");
+			else if (isCompositeButNotEven(i))
+				wantedNumbers.add("composite");
+			else
+				wantedNumbers.add(i.toString());
+		}
+		System.out.println(wantedNumbers);
+
+		ArrayList<String> numbersToTest = PrimeCompositeFinder.generateStringNumberArray(min, max);
+		ArrayList<String> numbersWithComposites = PrimeCompositeFinder.findNotEvenComposites(numbersToTest);
+		ArrayList<String> numbersWithPrimesAndComposites = PrimeCompositeFinder.findPrimes(numbersWithComposites);
+
+		assertEquals(wantedNumbers, numbersWithPrimesAndComposites);
+	}
+	
 	private static boolean isPrime(int n) {
 		if (n == 1)
 			return false;

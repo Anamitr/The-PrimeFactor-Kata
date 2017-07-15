@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 public class PrimeCompositeFinder {
 
-	public static ArrayList<Integer> generateIntegerArray(int min, int max) {
-		ArrayList<Integer> generatedNumbers = new ArrayList<Integer>();
-		for(int i = min; i <= max; i++)
-			generatedNumbers.add(new Integer(i));
+	public static ArrayList<String> generateStringNumberArray(int min, int max) {
+		ArrayList<String> generatedNumbers = new ArrayList<String>();
+		for(Integer i = min; i <= max; i++)
+			generatedNumbers.add(i.toString());
 		return generatedNumbers;
 	}
+	
+	
 	
 }

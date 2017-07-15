@@ -12,16 +12,18 @@ public class Tests {
 	
 	@Test
 	public void shouldGenerateNumbersWithinRange() {
-		ArrayList<Integer> wantedNumbers = new ArrayList<Integer>();
-		ArrayList<Integer> generatedNumbers = new ArrayList<Integer>();
+		ArrayList<String> wantedNumbers = new ArrayList<String>();
+		ArrayList<String> generatedNumbers = new ArrayList<String>();
 		final Integer min = new Integer(1);
 		final Integer max = new Integer(100);
 		
-		for(int i = min; i <= max; i++)
-			wantedNumbers.add(new Integer(i));
+		for(Integer i = min; i <= max; i++)
+			wantedNumbers.add(i.toString());
 		
-		generatedNumbers = PrimeCompositeFinder.generateIntegerArray(1, 100);
+		generatedNumbers = PrimeCompositeFinder.generateStringNumberArray(1, 100);
 		assertEquals(wantedNumbers, generatedNumbers);
 	}
+	
+
 
 }

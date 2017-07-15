@@ -1,4 +1,5 @@
 package tests;
+
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import org.junit.Test;
 import main.PrimeCompositeFinder;
 
 public class Tests {
-	
+
 	@Test
 	public void shouldGenerateNumbersWithinRange() {
 		ArrayList<String> wantedNumbers = new ArrayList<String>();
@@ -23,7 +24,7 @@ public class Tests {
 		generatedNumbers = PrimeCompositeFinder.generateStringNumberArray(1, 100);
 		assertEquals(wantedNumbers, generatedNumbers);
 	}
-	
+
 	@Test
 	public void shouldPrintPrimeInsteadOfNumber() {
 		ArrayList<String> wantedNumbers = new ArrayList<String>();
@@ -41,7 +42,7 @@ public class Tests {
 
 		assertEquals(wantedNumbers, numbersWithPrimes);
 	}
-	
+
 	@Test
 	public void shouldPrintCompositeButNotEven() {
 		ArrayList<String> wantedNumbers = new ArrayList<String>();
@@ -59,20 +60,11 @@ public class Tests {
 
 		assertEquals(wantedNumbers, numbersWithComposites);
 	}
-	
+
 	@Test
 	public void shouldPrintNumbersButPrimesAndComposites() {
-		ArrayList<String> wantedNumbers = new ArrayList<String>();
-		final int min = 1, max = 100;
-		for (Integer i = min; i <= max; i++) {
-			if (isPrime(i))
-				wantedNumbers.add("prime");
-			else if (isCompositeButNotEven(i))
-				wantedNumbers.add("composite");
-			else
-				wantedNumbers.add(i.toString());
-		}
-		System.out.println(wantedNumbers);
+		final int min = 1, max = 100;		
+		ArrayList<String> wantedNumbers = generateWantedNumbersWithPrimesAndComposites(min, max);
 
 		ArrayList<String> numbersToTest = PrimeCompositeFinder.generateStringNumberArray(min, max);
 		ArrayList<String> numbersWithPrimes = PrimeCompositeFinder.findPrimes(numbersToTest);
@@ -81,11 +73,22 @@ public class Tests {
 
 		assertEquals(wantedNumbers, numbersWithPrimesAndComposites);
 	}
-	
+
 	@Test
 	public void shouldPrintNumbersButPrimesAndCompositesReverseOrder() {
+		final int min = 1, max = 100;		
+		ArrayList<String> wantedNumbers = generateWantedNumbersWithPrimesAndComposites(min, max);
+
+		ArrayList<String> numbersToTest = PrimeCompositeFinder.generateStringNumberArray(min, max);
+		ArrayList<String> numbersWithComposites = PrimeCompositeFinder.findNotEvenComposites(numbersToTest);
+		ArrayList<String> numbersWithPrimesAndComposites = PrimeCompositeFinder.findPrimes(numbersWithComposites);
+
+		assertEquals(wantedNumbers, numbersWithPrimesAndComposites);
+	}
+
+	private ArrayList<String> generateWantedNumbersWithPrimesAndComposites(final int min, final int max) {
 		ArrayList<String> wantedNumbers = new ArrayList<String>();
-		final int min = 1, max = 100;
+		
 		for (Integer i = min; i <= max; i++) {
 			if (isPrime(i))
 				wantedNumbers.add("prime");
@@ -94,15 +97,11 @@ public class Tests {
 			else
 				wantedNumbers.add(i.toString());
 		}
-		System.out.println(wantedNumbers);
-
-		ArrayList<String> numbersToTest = PrimeCompositeFinder.generateStringNumberArray(min, max);
-		ArrayList<String> numbersWithComposites = PrimeCompositeFinder.findNotEvenComposites(numbersToTest);
-		ArrayList<String> numbersWithPrimesAndComposites = PrimeCompositeFinder.findPrimes(numbersWithComposites);
-
-		assertEquals(wantedNumbers, numbersWithPrimesAndComposites);
+		return wantedNumbers;
 	}
 	
+	
+
 	private static boolean isPrime(int n) {
 		if (n == 1)
 			return false;
@@ -112,11 +111,15 @@ public class Tests {
 		}
 		return true;
 	}
-	
+
 	private static boolean isCompositeButNotEven(int n) {
-		if( n == 1) return false;
-		if(isPrime(n)) return false;
-		else if(n%2 == 0) return false;
-		else return true;
+		if (n == 1)
+			return false;
+		if (isPrime(n))
+			return false;
+		else if (n % 2 == 0)
+			return false;
+		else
+			return true;
 	}
 }

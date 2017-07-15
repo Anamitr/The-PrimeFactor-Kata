@@ -23,5 +23,33 @@ public class Tests {
 		generatedNumbers = PrimeCompositeFinder.generateStringNumberArray(1, 100);
 		assertEquals(wantedNumbers, generatedNumbers);
 	}
+	
+	@Test
+	public void shouldPrintPrimeInsteadOfNumber() {
+		ArrayList<String> wantedNumbers = new ArrayList<String>();
+		final int min = 1, max = 100;
+		for (Integer i = min; i <= max; i++) {
+			if (isPrime(i))
+				wantedNumbers.add("prime");
+			else
+				wantedNumbers.add(i.toString());
+		}
+		System.out.println(wantedNumbers);
+
+		ArrayList<String> numbersToTest = PrimeCompositeFinder.generateStringNumberArray(min, max);
+		ArrayList<String> numbersWithPrimes = PrimeCompositeFinder.findPrimes(numbersToTest);
+
+		assertEquals(wantedNumbers, numbersWithPrimes);
+	}
+	
+	private static boolean isPrime(int n) {
+		if (n == 1)
+			return false;
+		for (int i = 2; i < n; i++) {
+			if (n % i == 0)
+				return false;
+		}
+		return true;
+	}
 
 }

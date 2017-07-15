@@ -100,7 +100,14 @@ public class Tests {
 		return wantedNumbers;
 	}
 	
-	
+	@Ignore
+	@Test
+	public void shouldAcceptAnyRange() {
+		for (int min = 0; min < Integer.MAX_VALUE; min++) {
+			for (int max = min + 1; max < Integer.MAX_VALUE; max++)
+				PrimeCompositeFinder.generateStringNumberArray(min, max);
+		}
+	}
 
 	private static boolean isPrime(int n) {
 		if (n == 1)

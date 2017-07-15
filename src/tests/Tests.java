@@ -74,6 +74,14 @@ public class Tests {
 		assertEquals(wantedNumbers, numbersWithPrimesAndComposites);
 	}
 	
+	//@Ignore
+	@Test
+	public void shouldAcceptAnyRange() {
+		for(int min = 0; min < Integer.MAX_VALUE; min++) {
+			for(int max = min+1; max < Integer.MAX_VALUE; max++) PrimeCompositeFinder.generateStringNumberArray(min, max);
+		}
+	}
+	
 	boolean isPrime(int n) {
 		if (n == 1) return false;
 	    for(int i=2;i<n;i++) {
